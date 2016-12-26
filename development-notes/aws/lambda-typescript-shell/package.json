@@ -10,7 +10,7 @@
     "build:install": "cp package.json dist/ && cd dist && npm install --production",
     "package": "npm run build && npm run package:pack",
     "package:pack": "zip -r artifact.zip dist/* -x '*.map'",
-    "deploy": "npm run package && aws lambda update-function-code --function-name lambda-sandbox --zip-file fileb://artifact.zip --region us-west-2 --profile ucadmin",
+    "deploy": "npm run package && aws lambda update-function-code --function-name <AWS-LAMBDA-NAME> --zip-file fileb://artifact.zip --region us-west-2 --profile ucadmin",
     "mock": "npm run build:init && npm run build:compile && ENV=local node mock/run.js"
   },
   "dependencies": {
