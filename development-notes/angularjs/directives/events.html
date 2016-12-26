@@ -1,0 +1,37 @@
+<html ng-app="myApp">
+
+<head>
+
+<script src="../angular.min.js"></script>
+<script src="../angular-route.min.js"></script>
+
+<script>
+	
+	// dont need to dynamically bind with .on() all the time
+	// can use: ng-click, ng-mouseover, ng-keypress, etc.
+
+	// better to use ng-model for updating data on an event
+
+	// can create custom event directives
+	
+	angular
+		.module('myApp', [])
+		.controller("mainController", function($scope) {
+			
+			$scope.overit = function (event) {
+				console.log(event);
+				console.log(event.type);
+			}
+		});
+
+</script>
+
+</head>
+
+<body ng-controller="mainController">
+
+<div ng-mouseover="overit($event)" ng-click="overit($event)">Click Me!</div>
+
+</body>
+
+</html>

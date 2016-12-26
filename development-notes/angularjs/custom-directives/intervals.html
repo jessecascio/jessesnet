@@ -1,0 +1,59 @@
+<html ng-app="myApp">
+
+<head>
+
+<script src="../angular.min.js"></script>
+<script src="../angular-route.min.js"></script>
+
+<script>
+
+	angular
+		.module('myApp', [])
+		.controller("intervalController", function($scope) {
+
+			$scope.vart = "my vart"; // can override from parent controller
+
+		})
+		.controller("parentController", function($scope) {
+
+			$scope.tart = "tarter sauce";
+
+			$scope.vart = "override";
+
+		})
+		.directive("intervalDirective", function($interval) {
+			
+			return {
+	            restrict: 'E',
+	            link: function(scope, element, attrs) {
+	            	
+	            	hitit();
+
+	            	$interval(function() {
+	            		hitit();
+	            	}, 1000);
+
+	            	// inherits parent controllers scopes
+	            	function hitit() {
+	            		console.log("hitting...");
+	            		console.log(scope.vart);
+	            		console.log(scope.tart);
+	            	}
+	            }
+	        };   
+
+		});
+
+</script>
+
+</head>
+
+<body ng-controller="parentController">
+
+Hello World!!! <br />
+
+<interval-directive ng-controller="intervalController" />
+
+</body>
+
+</html>

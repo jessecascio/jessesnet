@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1425430419 source:/home/jesse/github/jessesnet/portfolio/languages/c++/headers/main.cpp
+	<iostream>
+	"multiply.h"
+
+1425430453 /home/jesse/github/jessesnet/portfolio/languages/c++/headers/multiply.h
+
+1425430381 source:/home/jesse/github/jessesnet/portfolio/languages/c++/headers/multiply.cpp
+

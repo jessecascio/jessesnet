@@ -1,0 +1,65 @@
+<html ng-app="myApp">
+
+<head>
+
+<script src="../angular.min.js"></script>
+<script src="../angular-route.min.js"></script>
+
+<script>
+
+	angular
+		.module('myApp', [])
+		.controller("mainController", function($scope) {
+			$scope.books = [
+				{"title": "Peoples History of the United States", "author": "Howard Zinn", "read": false},
+				{"title": "Open Viens of Laten America", "author": "Edgar Allen Poe", "read": true}
+			];
+
+			// can add extras
+			$scope.books.push({
+				"title": "Howdy Doody",
+				"author": "old mcdonald",
+				"read": false
+			});
+
+			$scope.showModel = function(book) {
+
+				if (book.read) {
+					$scope.message = "Just read " + book.title + "!!!";
+				} else {
+					$scope.message = "Just unread " + book.title + "!!!";
+				}
+
+				var read = 0;
+
+				// just use scope.count instead of continually iterating
+				for (var b in $scope.books) {
+					if ($scope.books[b].read) {
+						read++;
+					}
+				}
+
+				$scope.count = "have read " + read + " books";
+			}
+		});
+
+</script>
+
+</head>
+
+<body ng-controller="mainController">
+
+<!-- better to use placeholders than DOM nav -->
+<div id="output">
+	{{message}} <br /> {{count}}
+</div>
+
+<ul>
+	<li ng-repeat="(i, book) in books">
+		#{{i+1}} - {{book.title}}, {{book.author}} - Read? <input type="checkbox" ng-model="book.read" ng-checked="book.read" ng-click="showModel(book)" />
+	</li>
+</ul>
+
+</body>
+
+</html>

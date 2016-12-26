@@ -1,0 +1,65 @@
+<html ng-app="myApp">
+
+<head>
+
+<script src="../angular.min.js"></script>
+<script src="../angular-route.min.js"></script>
+
+<script>
+
+	angular
+		.module('myApp', [])
+		.controller("mainController", function($scope) {
+			$scope.message = "default";
+		})
+		.directive("buttonAction", function() {
+			
+			return {
+	            restrict: 'EA',
+	            // template: "<div>Click Me</div>",
+	            link: function(scope, element, attrs) {
+	            	
+	            	// console.log(attrs["buttonAction"]); // passed in via attribute
+
+	            	element.on("click", function() {
+	            		
+	            		// attrs["target"] = outsider
+	       				// element.parent("body").find("div") // can only find by tag
+
+	       				var c = document.getElementById(attrs["targetId"]);
+	            		// angular.element(c).html("Clicked!") // wrap as an agular element
+
+	            		scope.message = "Clicked!";
+	            		console.log("set: " + scope.message); // update not "contained"
+	            		
+	            		scope.$apply(); // manually update the scope
+
+	            		// different ways to find things
+	            		// console.log(document.querySelector("#outsider"));
+	            		// console.log(document.getElementById("outsider"));
+	            	});
+
+	            	// scope.message = "default 2"; // can access scope here
+	            }
+	        };   
+
+		});
+
+</script>
+
+</head>
+
+<body ng-controller="mainController">
+
+Hello World!!! <br />
+
+<!-- pass the target id -->
+<button-action target-id="outsider">Share It!</button-action> <br />
+<div button-action="param" target-id="newb">Work It!</button-action> <br /><br />
+
+<div id="outsider">{{message}}</div>
+<div id="newb"></div>
+
+</body>
+
+</html>

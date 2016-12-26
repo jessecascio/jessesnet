@@ -1,0 +1,8 @@
+# vendor
+vendor
+
+# local config override
+app/config/config.php
+
+# log files
+logs/*.log

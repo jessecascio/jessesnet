@@ -1,0 +1,20 @@
+
+- had to ensure all tables had primary keys
+- had to update all the tinyint/smallint to integer in the entities
+- bidirectional used if refernces held in the properties of both entities
+- couldnt use the simple $em interface, i.e. find() to pre hydrate without multiple steps
+- have to write custom dql, create a custom repository
+- if see erros about not loading proxy classes, set autogenerate to true and run once (see bootstrap)
+
+- turn on the query log for monitoring
+	show variables like "%general_log%";
+
+	set global general_log=1;
+	set global general_log_file='/tmp/mysql.log';
+	
+MANY - TO -ONE
+- reference the custom repoistory in the entity grouping from
+- create a new property for the relationships
+- set the correct relationships on the properties:
+	* @ORM\ManyToOne(targetEntity="FoodGroup")
+    * @ORM\JoinColumn(name="food_group_id", referencedColumnName="id")

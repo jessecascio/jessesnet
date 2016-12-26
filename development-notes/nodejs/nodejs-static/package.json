@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "babel": "^5.6.23"
+  },
+  "devDependencies": {
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "mocha": "latest",
+    "sinon": "latest",
+    "sinon-chai": "latest"
+  }
+}

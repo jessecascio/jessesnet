@@ -1,0 +1,5 @@
+.DS_Store
+*.zip
+src/config/local.js
+node_modules/
+dist/

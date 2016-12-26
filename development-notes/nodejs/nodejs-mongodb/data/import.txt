@@ -1,0 +1,3 @@
+mongoimport --type csv --headerline weather_data.csv -d weather -c data
+mongoimport -d school -c students < students.json
+mongoimport -d m101 -c profile < sysprofile.json

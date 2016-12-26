@@ -1,0 +1,18 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.ts",
+  "scripts": {
+    "start": "ts-node run.ts",
+    "test": "npm run compile && mocha test.js",
+    "compile": "npm run compile:init && npm run compile:ts",
+    "compile:init": "rm -rf dist && mkdir dist",
+    "compile:ts": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}

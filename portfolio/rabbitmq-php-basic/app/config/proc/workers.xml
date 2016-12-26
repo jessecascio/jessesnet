@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="yes"?>
+
+<workers>
+    
+    <worker>
+        <job_type>api_call</job_type>
+        <class>APIClient</class>
+    </worker>
+    <worker>
+        <job_type>db_operation</job_type>
+        <class>DBClient</class>
+    </worker>
+    <worker>
+        <job_type>heavy_calculation</job_type>
+        <class>CalcClient</class>
+    </worker>
+    <worker>
+        <job_type>intensive_io</job_type>
+        <class>IOClient</class>
+    </worker>
+
+</workers>

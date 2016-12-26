@@ -1,0 +1,12 @@
+**/vendor/
+**/node_modules/
+**/notes.txt
+**/config.php
+**/out
+**/*.class
+**/dist/
+.DS_Store
+**/*.zip
+**/npm-debug.log
+**/local.json
+**/dev.json

@@ -1,0 +1,46 @@
+<html ng-app="myApp">
+
+<head>
+
+<script src="../angular.min.js"></script>
+<script src="../angular-route.min.js"></script>
+
+<script>
+
+	angular
+		.module('myApp', [])
+		.controller("mainController", function($scope) {
+			$scope.cars = [
+				{"make": "Ford", "model": "Mustang"},
+				{"make": "Chevy", "model": "Impala"},
+				{"make": "Ford", "model": "F150"},
+				{"make": "Toyota", "model": "Tacoma"},
+				{"make": "Subaru", "model": "Impreza"},
+			];
+		});
+
+</script>
+
+<style>
+	.odd { background-color: lightcoral}
+	.even { background-color: lavenderblush}
+</style>
+
+</head>
+
+<body ng-controller="mainController">
+
+Built ins - $index, $first, $last, $middle, $even, $odd
+<ul>
+	<li ng-repeat="car in cars">
+		<span ng-class="$even ? 'even' : 'odd'">#{{$index+1}} - {{car.make}} {{car.model}}</span>
+		<span ng-class-even="'even'" ng-class-odd="'odd'"> (mas examples) </span> 
+		<span ng-if="$first" > - Lets Begin!!!</span>
+		<span ng-if="$middle"> - Nobyd cares...</span>
+		<span ng-if="$last"> - Thats All!!!</span>
+	</li>
+</ul>
+
+</body>
+
+</html>

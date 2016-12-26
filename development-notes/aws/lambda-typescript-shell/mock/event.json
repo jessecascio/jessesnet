@@ -1,0 +1,33 @@
+{
+	"body-json": {},
+	"params": {
+		"path": {
+			"var": "sup"
+		},
+		"querystring": {
+			"q": "yo"
+		},
+		"header": {}
+	},
+	"stage-variables": {},
+	"context": {
+		"account-id": "AWS-ACCOUNT-ID",
+		"api-id": "AWS-ID",
+		"api-key": "test-invoke-api-key",
+		"authorizer-principal-id": "",
+		"caller": "TOKEN",
+		"cognito-authentication-provider": "",
+		"cognito-authentication-type": "",
+		"cognito-identity-id": "",
+		"cognito-identity-pool-id": "",
+		"http-method": "GET",
+		"stage": "test-invoke-stage",
+		"source-ip": "test-invoke-source-ip",
+		"user": "TOKEN",
+		"user-agent": "Apache-HttpClient/4.5.x (Java/1.8.0_102)",
+		"user-arn": "arn:aws:iam::account:user/user",
+		"request-id": "test-invoke-request",
+		"resource-id": "AWS-ID",
+		"resource-path": "/path/{var}"
+	}
+}

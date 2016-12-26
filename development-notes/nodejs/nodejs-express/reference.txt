@@ -1,0 +1,82 @@
+
+==========================================
+				APPLICATION
+==========================================
+
+app.set(name, value) 					Sets app-specific properties
+app.get(name) 							Retrieves value set by app.set()
+app.enable(name) 						Enables a setting in the app
+app.disable(name) 						Disables a setting in the app
+app.enabled(name) 						Checks if a setting is enabled
+app.disabled(name) 						Checks if a setting is disabled
+app.configure([env],callback) 			Sets app settings conditionally based on the development environment
+app.use([path], function) 				Loads a middleware in the app
+app.engine(ext, callback) 				Registers a template engine for the app
+app.param([name], callback) 			Adds logic to route parameters
+app.VERB(path, [callback...],callback) 	Defines routes and handlers based on HTTP verbs
+app.all(path, [callback...],callback) 	Defines routes and handlers for all HTTP verbs
+app.locals 								The object to store variables accessible from any view
+app.render(view, [options], callback) 	Renders view from the app
+app.routes 								A list of routes defined in the app
+app.listen() 							Binds and listen for connections
+
+==========================================
+				REQUEST
+==========================================
+
+req.params 								Holds the values of named routes parameters
+req.params(name) 						Returns the value of a parameter from named routes or 
+										   GET params or POST params
+req.query 								Holds the values of a GET form submission
+req.body 								Holds the values of a POST form submission
+req.files 								Holds the files uploaded via a form
+req.route 								Provides details about the current matched route
+req.cookies 							Cookie values
+req.Signed 								Signed cookie values
+req.get(header) 						Gets the request HTTP header
+req.accepts(types) 						Checks if the client accepts the media types
+req.accepted 							A list of accepted media types by the client
+req.is(type) 							Checks if the incoming request is of the particular media type
+req.ip 									The IP address of the client
+req.ips 								The IP address of the client, along with that of 
+										   the proxies it is connected through
+req.path 								The request path
+req.host 								Hostname from the HTTP header
+req.fresh 								Checks if the request is still fresh
+req.stale 								Checks if the request is stale
+req.xhr 								Checks if the request came via an AJAX request
+req.protocol 							The protocol used for making the request
+req.secure 								Checks if it is a secure connection
+req.subdomains 							Subdomains of the host domain name
+req.url 								The request path, along with any query parameters
+req.original							Url Used as a backup for req.url
+req.acceptedLanguages 					A list of accepted languages by the client
+req.acceptsLanguage(langauge) 			Checks if the client accepts the language
+req.acceptedCharsets 					A list of accepted charsets by the client
+req.acceptsCharsets(charset) 			Checks if the client accepts the charsets
+
+==========================================
+				RESPONSE
+==========================================
+
+res.status(code) 							Sets the HTTP response code
+res.set(field, [value]) 					Sets response HTTP headers
+res.get(header)								Gets the response HTTP header
+res.cookie(name, value, [options]) 			Sets cookie on the client
+res.clearCookie(name, [options]) 			Deletes cookie on the client
+res.redirect([status], url) 				Redirects the client to a URL, with an optional HTTP status code
+res.location 								The location value of the response HTTP header
+res.charset 								The charset value of the response HTTP header
+res.send([body|status], [body]) 			Sends an HTTP response object, with an optional HTTP response code
+res.json([status|body], [body]) 			Sends a JSON object for HTTP response, along with an 
+										   	   optional HTTP response code
+res.jsonp([status|body], [body]) 			Sends a JSON object for HTTP response with JSONP support, 
+										       along with an optional HTTP response code
+res.type(type) 								Sets the media type HTTP response header
+res.format(object) 							Sends a response conditionally, based on the request HTTP Accept header
+res.attachment([filename]) 					Sets response HTTP header Content-Disposition to attachment
+res.sendfile(path, [options],[callback]]) 	Sends a file to the client
+res.download(path, [filename],[callback]) 	Prompts the client to download a file
+res.links(links) 							Sets the HTTP Links header
+res.locals 									The object to store variables specific to the view rendering a request
+res.render(view, [locals],callback) 		Renders a view

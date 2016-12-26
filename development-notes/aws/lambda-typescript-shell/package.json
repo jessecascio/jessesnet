@@ -1,0 +1,27 @@
+{
+  "name": "aws-lambda-es7-shell",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:init && npm run build:compile && npm run build:install",
+    "build:init": "rm -rf dist",
+    "build:compile": "tsc",
+    "build:install": "cp package.json dist/ && cd dist && npm install --production",
+    "package": "npm run build && npm run package:pack",
+    "package:pack": "zip -r artifact.zip dist/* -x '*.map'",
+    "deploy": "npm run package && aws lambda update-function-code --function-name lambda-sandbox --zip-file fileb://artifact.zip --region us-west-2 --profile ucadmin",
+    "mock": "npm run build:init && npm run build:compile && ENV=local node mock/run.js"
+  },
+  "dependencies": {
+    "@types/aws-sdk": "0.0.42"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.7.13",
+    "eslint": "^3.10.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.6.0"
+  }
+}

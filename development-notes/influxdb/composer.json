@@ -1,0 +1,23 @@
+{
+    "name": "jessecascio/influxdb",
+    "description": "InfluxDB Library",
+    "keywords": ["influxdb","influxdb udp"],
+    "homepage": "https://github.com/jessecascio/influxdb",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jesse Cascio",
+            "email": "jessecascio@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7.0"
+    },
+    "autoload": {
+        "psr-4": {"InfluxDB\\": "src/InfluxDB"}
+    }
+}

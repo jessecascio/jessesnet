@@ -1,0 +1,38 @@
+
+MANY-TO-ONE
+
+(1) Load grocery_item with food_group 
+	- (many) grocery_item has a single food_group
+
+
+ONE-TO-MANY
+
+(1) Load a food_group with all grocery_items
+	- (a) food_group has (many) grocery_item
+
+(2) Load a list with all shopper
+	- (a) list has (many) shopper
+
+MANY-TO-MANY
+
+(1) Load a shopper with all their lists
+	- (many) shopper has (many) lists
+
+(2) Load a grocery_item list
+	- (many) grocery_item on (many) list
+
+
+
+QUE MAS
+
+X - Determine how much money a shopper has spent
+X - Determine frequency in which people shop alone
+- Which is the most frequent item bought
+- Who spends the most/least money
+- Determine most expensive list
+
+
+CONSIDERATIONS
+
+- JOIN on a non primary key
+- Composite primary keys

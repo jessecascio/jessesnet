@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "removeComments": true,
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "BinarySearchTree.ts",
+    "Node.ts",
+    "run.ts"
+  ]
+}

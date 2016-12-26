@@ -1,0 +1,14 @@
+{
+	"require": {
+	    "monolog/monolog": "1.11.0",
+	    "videlalvaro/php-amqplib": "2.2.*",
+	    "symfony/dependency-injection": "2.1.*"
+	},
+	"require-dev": {
+        "phake/phake": "1.*",
+        "phpunit/phpunit": "4.3.*"
+    },
+	"autoload": {
+	    "psr-4": { "": "src/" }
+	}
+}
