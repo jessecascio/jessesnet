@@ -2,51 +2,75 @@
 // @see https://community.topcoder.com/stat?c=problem_statement&pm=2922&rd=5855
 export default class MedalTable {
 
-  // @see 
+  // @see http://www.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm209
   public static generate(medals: string[]): string[] {
 
     const counts = {};
 
-   for (let i in medals) {
-     const mds = medals[i].split(" ");
+    /**
+     * step 1 - sum up the medals per country
+     * {
+     *    USA: [2, 4, 4],
+     *    RUS: [3, 5, 0]
+     * }
+     */
+    for (let i in medals) {
+      const mds = medals[i].split(" ");
      
-     for (let j in mds) {
-       if (!counts[mds[j]]) {
-         counts[mds[j]] = new Array(3);
-         counts[mds[j]].fill(0, 0, 3)
-       }
+      for (let j in mds) {
+        if (!counts[mds[j]]) {
+          counts[mds[j]] = new Array(3);
+          counts[mds[j]].fill(0, 0, 3)
+        }
        
-       counts[mds[j]][j]++;
-     }
-     
-   }
+        counts[mds[j]][j]++;
+      }
+    }
 
-   for (let c in counts) {
-     counts[c] = counts[c].join(" ");
-   }
+    // @step 2 - turn medal count int string i.e "2 4 4"
+    for (let c in counts) {
+      counts[c] = counts[c].join(" ");
+    }
 
-   const t = new Tree();
+    /**
+     * step 3 - map medal counts to countries
+     * {
+     *    "2 4 4": ["USA", "JPN"]
+     * }
+     */
+    const map = {};
 
-   for (let n in counts) {
-     t.insert(`${counts[n]} [${n}]`, n);
-   }
+    for (let d in counts) {
+      if (!map[counts[d]]) {
+        map[counts[d]] = [];
+      }
 
-   const table = t.inorder();
+      map[counts[d]].push(d);
+    }
+    
+    // step 4 - sort the medal counts
+    const keys = Object.keys(map);
+    keys.sort();
 
-   for (let e in table) {
-     const ctr = table[e].substring(table[e].indexOf('[')+1, table[e].indexOf('[')+4);
-     table[e] = table[e].replace(/[^0-9\ ]+/g, '');
-     table[e] = `${ctr} ${table[e]}`;
-   }
-   
-   table.reverse();
+    // step 5 - for each medal count, enter country
+    const table = [];
+
+    for (let h=keys.length-1; h>=0; h--) {
+      // sort by country name
+      map[keys[h]].sort();
+
+      for(let o in map[keys[h]]) {
+        table.push(`${map[keys[h]][o]} ${keys[h]}`);
+      }
+    }
    
    return table;
   }
-
- 
 }
 
+/**
+ * wrong data structure
+ */
 class Tree {
   private root;
 
