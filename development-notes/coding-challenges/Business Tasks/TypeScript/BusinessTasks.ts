@@ -2,8 +2,15 @@
 // @see https://community.topcoder.com/stat?c=problem_statement&pm=1585&rd=6535
 export default class BusinessTasks {
 
-  // @see https://community.topcoder.com/stat?c=problem_solution&cr=7445961&rd=6535&pm=1585
+  // @see http://www.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm236
   public static getTask(tasks: string[], seed: number): string {
+    /**
+     * i = (j + n) % k
+     *  i, index to delete
+     *  j, start index
+     *  n, seed - 1
+     *  k, set size
+     */
     let offset = 0;
     while (tasks.length > 1) {
       offset = (offset + seed - 1) % tasks.length;
