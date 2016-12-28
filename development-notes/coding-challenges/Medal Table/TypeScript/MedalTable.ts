@@ -27,28 +27,25 @@ export default class MedalTable {
       }
     }
 
-    // @step 2 - turn medal count int string i.e "2 4 4"
-    for (let c in counts) {
-      counts[c] = counts[c].join(" ");
-    }
-
     /**
-     * step 3 - map medal counts to countries
+     * step 2 - map medal counts to countries
      * {
      *    "2 4 4": ["USA", "JPN"]
      * }
      */
     const map = {};
 
-    for (let d in counts) {
-      if (!map[counts[d]]) {
-        map[counts[d]] = [];
+    for (let cntry in counts) {
+      const mdls = counts[cntry].join(" ");
+
+      if (!map[mdls]) {
+        map[mdls] = [];
       }
 
-      map[counts[d]].push(d);
+      map[mdls].push(cntry);
     }
     
-    // step 4 - sort the medal counts
+    // step 3 - sort the medal counts
     const keys = Object.keys(map);
     keys.sort();
 
