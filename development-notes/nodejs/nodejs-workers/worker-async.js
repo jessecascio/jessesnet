@@ -6,7 +6,7 @@ let proc = require('child_process');
 
 function doWork() {
   return new Promise ((resolve, reject) => {
-    Promise.all([worker(1),worker(2),worker(3),worker(4),worker(5)]).then((data) => {
+    Promise.all([workerless(1),workerless(2),workerless(3),workerless(4),workerless(5)]).then((data) => {
       resolve(data);
     })
   });
@@ -18,6 +18,15 @@ function worker(i) {
     worker.on('message', (d) => {
       resolve(d);
     });
+  });
+}
+
+function workerless(i) {
+  return new Promise ((resolve, reject) => {
+    var iteration = 5000000000;
+    for (var i=0; i<iteration; i++) { }
+    console.log('math...');
+    resolve(78);
   });
 }
 

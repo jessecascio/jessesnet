@@ -1,0 +1,9 @@
+{
+  "presets": [ "latest" ],
+  "plugins": [
+    "add-module-exports",
+    "transform-runtime",
+    "transform-async-to-generator",
+    "transform-class-properties"
+  ]
+}
