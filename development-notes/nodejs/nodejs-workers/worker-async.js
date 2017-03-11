@@ -4,9 +4,21 @@ let proc = require('child_process');
 // let worker2 = proc.fork(__dirname+"/worker.js");
 // worker1.send('additional..');
 
+console.log('PROCS:', require('os').cpus().length);
+
 function doWork() {
   return new Promise ((resolve, reject) => {
-    Promise.all([workerless(1),workerless(2),workerless(3),workerless(4),workerless(5)]).then((data) => {
+    Promise.all([
+      worker(1),
+      worker(2),
+      worker(3),
+      worker(4),
+      worker(5),
+      worker(6),
+      worker(7),
+      worker(8),
+      worker(9)
+    ]).then((data) => {
       resolve(data);
     })
   });

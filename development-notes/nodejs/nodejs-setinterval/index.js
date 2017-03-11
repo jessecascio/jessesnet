@@ -1,4 +1,75 @@
 
+let events = require('events');
+let emitter = new events.EventEmitter();
+
+function cpubound() {
+  let i = 0;
+  let max = 5000000000;
+  let batch = 500000000;
+
+  console.log('starting cpu bound');
+  
+  var loop = setInterval(() => {
+
+    if (i >= max) {
+      console.log('cpu bound done');
+      clearInterval(loop);
+      emitter.emit('finished');
+      return;
+    }
+
+    for( var j = i; j < i + batch; j++ ) { }
+
+    console.log('cpu iteration done');
+
+    i += batch;
+  }, 0);
+  
+}
+ 
+cpubound();
+
+let io = setInterval(function() {
+  console.log('io bound work completed')
+}, 800);
+
+emitter.on('finished', (data) => {
+  console.log('work done....');
+  clearInterval(io);
+});
+
+/*
+let events = require('events');
+let emitter = new events.EventEmitter();
+
+emitter.on('cpubound', (data) => {
+  console.log('cpubound starting....', data);
+  cpubound();
+});
+
+emitter.on('iobound', (data) => {
+  console.log('iobound starting....', data);
+  iobound();
+});
+
+emitter.emit('cpubound', {foo:'baz'});
+emitter.emit('iobound', {foo:'baz'});
+
+console.log('finished script flow...');
+
+function cpubound() {
+  for (var i=0; i<5000000000; i++) { }
+    console.log('cpu bound work completed')
+}
+
+function iobound() {
+  setTimeout(function() {
+    console.log('io bound work completed')
+  }, 0);
+}
+*/
+
+/*
 var j = 0;
 
 setInterval(function() {
@@ -24,6 +95,8 @@ for (var i=0; i<5000000000; i++) { }
 console.log('working2..');
 
 for (var i=0; i<5000000000; i++) { }
+*/
+
 /*
 var async = require('async');
 
@@ -99,6 +172,8 @@ setInterval(function(){
     emitter.emit('poot', {foo:'baz'});
   });
 */
+
+/*
 
 /*
 let events  = require('events');
