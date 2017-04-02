@@ -5,7 +5,7 @@ export default class Master {
 
   static start(size, workers) {
     
-    const data = fs.readFileSync(`${__dirname}/../mock-data-${size}.json`, 'utf-8');
+    const data = fs.readFileSync(`${__dirname}/../data/mock-data-${size}.json`, 'utf-8');
     const json = JSON.parse(data);
     
     const segment = Math.floor(json.length / workers);
@@ -27,7 +27,7 @@ export default class Master {
 
   static worker(points, start, end) {
     return new Promise ((resolve, reject) => {
-      let worker = proc.fork(__dirname+"/worker-small.js");
+      let worker = proc.fork(__dirname+"/Worker.js");
       
       worker.on('message', (d) => {
         resolve(d);
