@@ -1,17 +1,42 @@
 
-import ProcessManger from './src/ProcessManager';
+import ProcessManger from './Manager';
 
-var cluster = require('cluster');
-var os = require('os');
-var exectimer = require('exectimer');
-var fs = require('fs');
+import Manager from './Manager';
+import exectimer from 'exectimer';
+import cluster from 'cluster';
+
+import Algorithm from './Algorithm';
+
+const timer = new exectimer.Tick('points');
+const args = {};
+
+const manager = new Manager();
+
+manager.process(cluster, args.s, args.w).then((d) => {
+  console.log('d', d);
+});
+
+ 
+
+
+
+/*
+function args() {
+  var args = {};
+
+  for (var i=2; i<process.argv.length; i=i+2) {
+    args[process.argv[i].replace(/[^a-z]/gi, '')] = process.argv[i + 1];
+  }
+
+  return args;
+}
+*/
 
 process.exit();
 
 if (cluster.isMaster) {
-  var timer = new exectimer.Tick('points');
+ 
   
-  var args = args();
 
   var size = parseInt(args.s) || 10000;
   var workers = parseInt(args.w) || 1;
@@ -76,35 +101,5 @@ if (cluster.isMaster) {
   });
 }
 
-function brute(points, start, end) {
-  var min = -1;
 
-  for (var i=start; i<end; i++) {
-    for (var j=0; j<points.length; j++) {
-      if (i === j) {
-        continue;
-      }
 
-      var x = points[i].x - points[j].x;
-      var y = points[i].y - points[j].y;
-
-      var dist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-  
-      if (min === -1 || dist < min) {
-        min = dist;
-      }
-    }
-  }
-
-  return min;
-}
-
-function args() {
-  var args = {};
-
-  for (var i=2; i<process.argv.length; i=i+2) {
-    args[process.argv[i].replace(/[^a-z]/gi, '')] = process.argv[i + 1];
-  }
-
-  return args;
-}

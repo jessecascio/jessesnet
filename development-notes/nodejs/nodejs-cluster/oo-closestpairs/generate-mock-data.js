@@ -1,6 +1,6 @@
 
 var random = [], unique = [];
-var t = 1000000;
+var t = 1000;
 
 for (var i=0; i<t; i++) {
   var x = Math.round(Math.random() * t);

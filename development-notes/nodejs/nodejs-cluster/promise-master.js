@@ -1,5 +1,6 @@
 
 let proc = require('child_process');
+let cluster = require('cluster');
 
 // let worker2 = proc.fork(__dirname+"/worker.js");
 // worker1.send('additional..');
@@ -24,7 +25,7 @@ function doWork() {
 
 function worker(i) {
   return new Promise ((resolve, reject) => {
-    let worker = proc.fork(__dirname+"/worker.js");
+    let worker = proc.fork(__dirname+"/promise-worker.js");
     worker.on('message', (d) => {
       resolve(d);
     });
