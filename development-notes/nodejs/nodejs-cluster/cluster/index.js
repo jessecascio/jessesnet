@@ -11,7 +11,7 @@ if (cluster.isMaster) {
   var size = parseInt(args.s) || 10000;
   var workers = parseInt(args.w) || 1;
 
-  var data = fs.readFileSync(`${__dirname}/mock-data-${size}.json`, 'utf-8');
+  var data = fs.readFileSync(`${__dirname}/../data/mock-data-${size}.json`, 'utf-8');
   var json = JSON.parse(data);
 
   if (workers === 1) {
