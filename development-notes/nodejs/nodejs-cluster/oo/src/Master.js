@@ -1,25 +1,34 @@
 import fs from 'fs';
+import os from 'os';
 import proc from 'child_process';
 
 export default class Master {
 
   static start(size, workers) {
     
-    const data = fs.readFileSync(`${__dirname}/../data/mock-data-${size}.json`, 'utf-8');
+    // hack for runing from src / dist (should be conf'd)
+    let data;
+    try {
+      data = fs.readFileSync(`${__dirname}/../../../data/mock-data-${size}.json`, 'utf-8');
+    } catch (e) {
+      data = fs.readFileSync(`${__dirname}/../../data/mock-data-${size}.json`, 'utf-8');
+    }
+
     const json = JSON.parse(data);
     
-    const segment = Math.floor(json.length / workers);
+    if (workers > os.cpus().length - 1 || workers <= 0) {
+      workers = os.cpus().length - 1;
+    }
+
+    const segment = Math.ceil(json.length / workers);
     let total = 0;
 
     let ps = [];
 
     for (let i=0; i<workers; i++) {
-      if (i !== workers - 1) {
-        ps.push(Master.worker(json, total, total + segment));
-        total += segment;
-      } else {
-        ps.push(Master.worker(json, total, json.length));
-      }
+      var end = total + segment > json.length ? json.length : total + segment;
+      ps.push(Master.worker(json, total, end));
+      total += segment;
     }
 
     return Promise.all(ps);

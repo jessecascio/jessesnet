@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "babel oo-closestpairs/src -d oo-closestpairs/dist -D",
     "cluster": "node cluster/index.js",
-    "proc": "node proc/index.js"
+    "proc": "node proc/index.js",
+    "oo": "node oo/dist/index.js",
+    "oo:build": "rm -rf oo/dist && babel oo/src -d oo/dist/src -D && babel oo/index.js -o oo/dist/index.js",
+    "oo:dev": "babel-node oo/index.js --"
   },
   "dependencies": {
     "babel-cli": "~6.22.0",

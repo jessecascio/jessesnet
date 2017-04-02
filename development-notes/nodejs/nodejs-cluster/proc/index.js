@@ -15,21 +15,8 @@ if (cluster.isMaster) {
   var data = fs.readFileSync(`${__dirname}/../data/mock-data-${size}.json`, 'utf-8');
   var json = JSON.parse(data);
 
-  if (workers === 1) {
-    console.log('STARTING SINGLE WORKER...');
-
-    timer.start();
-    worker(json, 0, json.length).then(function(distance) {
-      timer.stop();
-
-      console.log('DISTANCE', distance);
-      console.log('TIME', exectimer.timers.points.duration()/1000000000, 's');
-      process.exit();
-    });
-  }
-  
-  if (workers > 6 || workers <= 0) {
-    workers = 3;
+  if (workers > os.cpus().length - 1 || workers <= 0) {
+    workers = os.cpus().length - 1;
   }
 
   console.log(`STARTING ${workers} WORKERS...`);
@@ -37,7 +24,7 @@ if (cluster.isMaster) {
   var distances = [];
   var finished = 0;
 
-  var segment = Math.floor(json.length / workers);
+  var segment = Math.ceil(json.length / workers);
   var total = 0;
 
   timer.start();
@@ -45,12 +32,9 @@ if (cluster.isMaster) {
   var ps = [];
 
   for (var i=0; i<workers; i++) {
-    if (i !== workers - 1) {
-      ps.push(worker(json, total, total + segment ));
-      total += segment;
-    } else {
-      ps.push(worker(json, total, json.length ));
-    }
+    var end = total + segment > json.length ? json.length : total + segment;
+    ps.push(worker(json, total, end));
+    total += segment;
   }
 
   Promise.all(ps).then((data) => {
