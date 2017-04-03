@@ -19,7 +19,7 @@ if (cluster.isMaster) {
 
   // limit workers to number of cores - 1
   if (workers > os.cpus().length - 1 || workers <= 0) {
-    workers = os.cpus().length - 1;
+    workers = os.cpus().length > 1 ? os.cpus().length - 1 : 1;
   }
 
   console.log(`STARTING ${workers} WORKERS...`);
@@ -27,11 +27,12 @@ if (cluster.isMaster) {
   var distances = [];
   var finished = 0;
 
-  // parent event listeners to workers IPC data
+  // triggere when worker sends IPC data
   cluster.on('message', function(worker, message) {
     // recieved data from worker via IPC
     distances.push(message.distance);
   });
+  // triggered when worker dies
   cluster.on('exit', function (worker, code, signal) {
     finished++;
 
