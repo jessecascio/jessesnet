@@ -1,6 +1,7 @@
 import Master from './src/Master';
 import exectimer from 'exectimer';
 
+// keep logic out of entry script for testability
 (async function(){
   const timer = new exectimer.Tick('points');
   const args = (() => {
@@ -19,6 +20,7 @@ import exectimer from 'exectimer';
   console.log(`STARTING ${workers} WORKERS, ${size} POINTS...`);
 
   timer.start();
+  // encapsulate all of the control login into a testable class
   const data = await Master.start(size, workers);
   timer.stop();
    

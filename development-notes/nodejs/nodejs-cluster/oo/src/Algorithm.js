@@ -1,6 +1,7 @@
 
 export default class Algorithm {
 
+  // more modulare / reusable algorithm location
   static brute(points, start, end) {
     var min = -1;
 

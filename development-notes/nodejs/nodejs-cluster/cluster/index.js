@@ -44,7 +44,6 @@ if (cluster.isMaster) {
       console.log('TIME', exectimer.timers.points.duration()/1000000000, 's');
       process.exit();
     }
-
   });
 
   // calc segments for each worker to analyze

@@ -5,7 +5,6 @@ import proc from 'child_process';
 export default class Master {
 
   static start(size, workers) {
-    
     // hack for runing from src / dist (should be conf'd)
     let data;
     try {
@@ -17,7 +16,7 @@ export default class Master {
     const json = JSON.parse(data);
     
     if (workers > os.cpus().length - 1 || workers <= 0) {
-      workers = os.cpus().length - 1;
+      workers = os.cpus().length > 1 ? os.cpus().length - 1 : 1;
     }
 
     const segment = Math.ceil(json.length / workers);
@@ -25,6 +24,7 @@ export default class Master {
 
     let ps = [];
 
+    // same technique as inline child process example (proc)
     for (let i=0; i<workers; i++) {
       var end = total + segment > json.length ? json.length : total + segment;
       ps.push(Master.worker(json, total, end));
