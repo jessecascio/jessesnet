@@ -1,0 +1,22 @@
+/**
+ * https://palantir.github.io/tslint/rules/
+ */
+ 
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "member-ordering": [
+      false
+    ],
+    "no-console": [
+      false
+    ],
+    "quotemark": [
+      false
+    ]
+  },
+  "jsRules": {
+  },
+  "rulesDirectory": [
+  ]
+}

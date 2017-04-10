@@ -1,0 +1,16 @@
+{
+  "name": "examples",
+  "version": "0.1.0",
+  "scripts": {
+    "example": "ts-node"
+  },
+  "author": "Jesse Cascio",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^1.7.2",
+    "tslint": "^4.2.0",
+    "typescript": "^2.2.2",
+    "@types/node": "^7.0.12"
+  },
+  "dependencies": {}
+}
