@@ -13,6 +13,9 @@
     ],
     "quotemark": [
       false
+    ],
+    "trailing-comma": [
+      false
     ]
   },
   "jsRules": {
