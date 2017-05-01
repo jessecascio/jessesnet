@@ -11,3 +11,5 @@
 **/local.json
 **/dev.json
 **/build
+**/target
+**/out
