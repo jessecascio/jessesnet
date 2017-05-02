@@ -51,8 +51,39 @@
         rowCount--;
       };
 
-      document.getElementById("btnAddRow").onclick = addRow;
-      document.getElementById("btnDelRow").onclick = delRow;
+      document.getElementById("btnAddRow").onclick = addie;
+
+      document.getElementById("btnDelRow").addEventListener('click', (e) => {
+        // console.log(e.target.id);
+
+        if (rowCount == 0) {
+          setMessage("TABLE EMPTY!");
+          return;
+        }
+
+        resetMessage();
+
+        table.removeChild(table.childNodes[rowCount - 1]);
+        rowCount--;
+      });
+
+      function addie() {
+        if (rowCount >= 5) {
+          setMessage("TABLE FULL!");
+          return;
+        }
+
+        resetMessage();
+        rowCount++;
+
+        const td = document.createElement("td");
+        td.innerHTML = `<strong>${rowCount}</strong>`;
+
+        const tr = document.createElement("tr");
+        tr.appendChild(td);
+
+        table.appendChild(tr);
+      }
     };
 
     window.onload = init; 
