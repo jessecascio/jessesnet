@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script type="text/javascript">
+
+    // https://www.w3schools.com/jsref/dom_obj_all.asp
+    const init = () => {
+      const table = document.getElementById("table");
+      const output = document.getElementById("tableMsg");
+
+      let rowCount = 0;
+
+      const resetMessage = () => {
+        output.innerHTML = "";
+      };
+
+      const setMessage = (msg) => {
+        output.innerHTML = `<strong>${msg}</strong>`;
+      };
+
+      const addRow = () => {
+
+        if (rowCount >= 5) {
+          setMessage("TABLE FULL!");
+          return;
+        }
+
+        resetMessage();
+        rowCount++;
+
+        const td = document.createElement("td");
+        td.innerHTML = `<strong>${rowCount}</strong>`;
+
+        const tr = document.createElement("tr");
+        tr.appendChild(td);
+
+        table.appendChild(tr);
+      };
+
+      const delRow = () => {
+        if (rowCount == 0) {
+          setMessage("TABLE EMPTY!");
+          return;
+        }
+
+        resetMessage();
+
+        table.removeChild(table.childNodes[rowCount - 1]);
+        rowCount--;
+      };
+
+      document.getElementById("btnAddRow").onclick = addRow;
+      document.getElementById("btnDelRow").onclick = delRow;
+    };
+
+    window.onload = init; 
+
+  </script>
+
+  <style type="text/css">
+    .message {
+      padding-left: 5px;
+    }
+  </style>
+
+</head>
+<body>
+
+<div>
+  <p>Add row to table: 
+    <input id="btnAddRow" type="button" value="Add!" /> | 
+    <input id="btnDelRow" type="button" value="Remove!" /> |
+    <span class="message" id="tableMsg"></span>
+  </p>
+  <table id="table"></table>
+</div>
+
+</body>
+</html>
