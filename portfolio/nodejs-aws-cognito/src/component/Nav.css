@@ -1,0 +1,8 @@
+span.one  { left: 0%; position: relative; }
+span.two { left: 15%; position: relative; }
+span.three  { left: 30%; position: relative; }
+span.four  { left: 45%; position: relative; }
+span.five  { left: 60%; position: relative; }
+span.six  { left: 75%; position: relative; }
+
+.navContainer {margin:15px 150px 15px 150px;}
