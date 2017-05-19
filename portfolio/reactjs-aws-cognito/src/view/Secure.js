@@ -33,11 +33,11 @@ class Secure extends Component {
     this.state.user.getSession((err, result) => {
       if (result) {
 
-        AWS.config.update({region:'us-east-1'});
+        AWS.config.update({region:'us-west-2'});
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: 'us-east-1:abd5999a-898b-4bfe-a137-ASJDIODJAS',
+            IdentityPoolId: 'us-west-2:aa94bd82-c85a-4af4-b639-b50e5ddd2fb1',
             Logins : {
-              'cognito-idp.us-east-1.amazonaws.com/us-east-1_kvwQVUIOD9E' : result.getIdToken().getJwtToken()
+              'cognito-idp.us-west-2.amazonaws.com/us-west-2_mRRbRCxn3' : result.getIdToken().getJwtToken()
             }
         });
 
@@ -54,11 +54,11 @@ class Secure extends Component {
 
   async show(accessKeyId, secretAccessKey, sessionToken) {
     const config = {
-      invokeUrl:'https://5v4wc2zoasijd71j.execute-api.us-east-1.amazonaws.com',
+      invokeUrl:'https://619uvq457l.execute-api.us-west-2.amazonaws.com',
       accessKey: accessKeyId,
       secretKey: secretAccessKey,
       sessionToken: sessionToken, 
-      region: 'us-east-1'
+      region: 'us-west-2'
     };
     const apigClient = apigClientFactory.newClient(config);
 

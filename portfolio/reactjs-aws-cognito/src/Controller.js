@@ -5,8 +5,8 @@ export default class Controller {
 
   static user() {
     const poolData = {
-      UserPoolId : 'us-east-1_kvwQVUIOD9E', 
-      ClientId : '7adacdq3cnhcjjot9a28vtlgir' 
+      UserPoolId : 'us-west-2_mRRbRCxn3', 
+      ClientId : '5mbim4h4jl5r9371c821g6inru' 
     };
     const userPool = new CognitoUserPool(poolData);
     return userPool.getCurrentUser();
