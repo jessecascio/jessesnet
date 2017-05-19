@@ -32,7 +32,7 @@ class Vip extends Component {
     this.state.user.getSession((err, result) => {
       if (result) {
 
-        AWS.config.update({region:'us-east-1'});
+        AWS.config.update({region:'us-west-2'});
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
           IdentityPoolId: 'us-west-2:aa94bd82-c85a-4af4-b639-b50e5ddd2fb1',
           Logins : {
@@ -79,7 +79,7 @@ class Vip extends Component {
       accessKey: accessKeyId,
       secretKey: secretAccessKey,
       sessionToken: sessionToken, 
-      region: 'us-east-1'
+      region: 'us-west-2'
     };
     const apigClient = apigClientFactory.newClient(config);
 

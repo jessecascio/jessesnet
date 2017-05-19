@@ -19,6 +19,7 @@ class SignOut extends Component {
     if (this.state.user) {
       this.state.user.signOut();
       this.setState({user: undefined});
+      window.location.reload(); // hacky way to refresh session
     }
   }
 
