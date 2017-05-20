@@ -64,7 +64,8 @@ class Secure extends Component {
 
     const additionalParams = {        
       headers: {
-        'x-amz-security-token': sessionToken
+        'x-amz-security-token': sessionToken,
+        'x-api-key': 'Vj67IeLvFy5GslGLNZOwI62yPkqcGuwT125sUx3s'
       }         
     };
 

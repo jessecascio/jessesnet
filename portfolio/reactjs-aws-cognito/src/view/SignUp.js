@@ -44,7 +44,7 @@ class SignUp extends Component {
     };
   
     const attributeEmail = new CognitoUserAttribute(dataEmail);
-    const attributeName= new CognitoUserAttribute(dataName);
+    const attributeName = new CognitoUserAttribute(dataName);
     
     attributeList.push(attributeEmail);
     attributeList.push(attributeName);
