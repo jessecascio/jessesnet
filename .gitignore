@@ -13,3 +13,5 @@
 **/build
 **/target
 **/out
+**/cmake-build-debug/
+**/.idea/
