@@ -3,6 +3,7 @@
 **/notes.txt
 **/config.php
 **/out
+**/*.out
 **/*.class
 **/dist/
 .DS_Store

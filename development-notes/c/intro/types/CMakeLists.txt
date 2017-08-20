@@ -3,5 +3,5 @@ project(types)
 
 set(CMAKE_C_STANDARD 11)
 
-set(SOURCE_FILES main.c)
+set(SOURCE_FILES main.c chars.c arrays.c)
 add_executable(types ${SOURCE_FILES})
