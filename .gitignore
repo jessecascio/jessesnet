@@ -16,3 +16,4 @@
 **/out
 **/cmake-build-debug/
 **/.idea/
+**/.mvn/
