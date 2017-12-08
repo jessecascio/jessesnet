@@ -1,10 +1,7 @@
 package com.jessesnet;
 
-import sun.plugin2.gluegen.runtime.CPU;
-
 import java.util.LinkedList;
 import java.util.concurrent.RecursiveTask;
-import java.util.Random;
 
 public class CPUSplit extends RecursiveTask<Integer> {
     private int RANGE;
