@@ -13,7 +13,51 @@ public class Main {
 
     public static void main(String[] args) {
         // Main.forkJoin();
-        Main.CPUSplit();
+        // Main.CPUSplit();
+        // Main.PStream();
+    }
+
+    private static void PStream() {
+        LinkedList<Stock> stocks = new LinkedList<>();
+        Random r = new Random();
+
+        System.out.println("Populating Data Set....");
+        for (int i=0; i<1000000; i++) {
+            switch(r.nextInt(1) + 1) {
+                case 0:
+                    stocks.add(new Stock("APPL", r.nextInt(1000) + 1));
+                    break;
+                case 1:
+                    stocks.add(new Stock("GOOG", r.nextInt(1000) + 1));
+                    break;
+            }
+        }
+
+        /**
+         *
+         */
+        System.out.println("\nRunning Sequential Stream....");
+        long s = System.nanoTime();
+        long x = 0;
+        for (Stock st: stocks) {
+            if (st.getTicker() == "GOOG" && st.getPrice() > 200) {
+                x++;
+            }
+        }
+        long t2 = (System.nanoTime() - s) / 1000000;
+        System.out.println("Took (microseconds): " + t2);
+
+        System.out.println("\nRunning Parrallel Stream....");
+        s = System.nanoTime();
+        long y = stocks.parallelStream()
+                    .filter(st -> st.getTicker() == "GOOG")
+                    .filter(st -> st.getPrice() > 200)
+                    .count();
+
+        t2 = (System.nanoTime() - s) / 1000000;
+        System.out.println("Took (microseconds): " + t2);
+
+        System.out.println("\nNumber of stocks > 200 - " + x + ":" + y);
     }
 
     private static void CPUSplit() {
