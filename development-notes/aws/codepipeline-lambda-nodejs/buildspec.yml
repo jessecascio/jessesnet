@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - npm install
+      - npm test
+  build:
+    commands:
+      - aws cloudformation package --template-file samtemplate.yml --s3-bucket <s3-bucket-name> --output-template-file deployment.yml
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  type: zip
+  files:
+    - deployment.yml
