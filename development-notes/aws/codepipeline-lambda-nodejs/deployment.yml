@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Outputs the time
+Resources:
+  nodejsapipipelineAUTO:
+    Properties:
+      CodeUri: s3://bucket-name/bcf9164e9609f894e2fc993df5382586
+      Handler: index.handler
+      Runtime: nodejs4.3
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
