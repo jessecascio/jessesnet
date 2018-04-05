@@ -1,10 +1,11 @@
 
-const AWS = require('aws-sdk'); 
+const AWS = require("aws-sdk"); 
 const cw = new AWS.CloudWatch({
   region: "us-west-1"
 });
 
-// create a single entry with no dimensions
+// create a single entry with no dimensions to monitor the number of
+// status code responses from an API
 const a = {
   "Namespace": "SystemMetrics",
   "MetricData": [{
@@ -29,20 +30,34 @@ const b = {
   }]
 };
 
-// create a multiple dimension metric, when graphing each dimension is apart
-// of the query, so you'll likely want to "bucket" your metrics somehow
-const latency = 245;
+// track the latency for a particular code allowing for metrics
+// such as average, p90, etc.
 const c = {
   "Namespace": "SystemMetrics",
   "MetricData": [{
-    "MetricName": "APICall",
+    "MetricName": "APILatency",
     "Dimensions": [{
       "Name": "Code",
       "Value": "200"
-    },
-    {
-      "Name": "Latency",
-      "Value": Math.floor(latency/100) * 100)
+    }],
+    "Timestamp": new Date().toISOString(),
+    "Value": 234
+  }]
+};
+
+// create a multiple dimension metric, when graphing each dimension is apart
+// of the query, so you may need to "bucket" the metrics for useful graphs
+const latency = 245;
+const d = {
+  "Namespace": "SystemMetrics",
+  "MetricData": [{
+    "MetricName": "APICalls",
+    "Dimensions": [{
+      "Name": "API",
+      "Value": "Twitter"
+    },{
+      "Name": "Code",
+      "Value": "200"
     }],
     "Timestamp": new Date().toISOString(),
     "Value": 1
@@ -51,7 +66,7 @@ const c = {
 
 (async () => {
   try {
-    await cw.putMetricData(c).promise();
+    await cw.putMetricData(d).promise();
   } catch (e) {
     console.log(e);
   }
