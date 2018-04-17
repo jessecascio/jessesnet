@@ -1,0 +1,49 @@
+---
+swagger: 2.0
+basePath: /v1
+info:
+  title: SAMSwag
+schemes:
+- https
+
+paths:
+  "/route":
+    get:
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: "#/definitions/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: 200
+        uri: 
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SAMLamGET.Arn}/invocations"
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: aws
+    post:
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: "#/definitions/Empty"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: 200
+        uri: 
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SAMLamPOST.Arn}/invocations"
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: aws
+
+definitions:
+  Empty:
+    type: object
+    title: Empty Schema

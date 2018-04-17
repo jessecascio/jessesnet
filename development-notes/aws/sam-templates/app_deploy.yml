@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple API Endpoint configured using Swagger specified inline and backed
+  by a Lambda function
+Outputs:
+  ApiURL:
+    Description: API endpoint URL for Prod environment
+    Value:
+      Fn::Sub: https://${SAMApi}.execute-api.${AWS::Region}.amazonaws.com/stage
+Resources:
+  SAMApi:
+    Properties:
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: s3://super-secret-dont-read-me/swagger.json
+      StageName: stage
+    Type: AWS::Serverless::Api
+  SAMLamGET:
+    Properties:
+      CodeUri: s3://super-secret-dont-read-me/5472166b4e264491e5987cb6ef8c862e
+      Events:
+        ApiGETEvent:
+          Properties:
+            Method: GET
+            Path: /route
+            RestApiId:
+              Ref: SAMApi
+          Type: Api
+      Handler: get.handler
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  SAMLamPOST:
+    Properties:
+      CodeUri: s3://super-secret-dont-read-me/81f39bc18415a7857c538865051e3082
+      Events:
+        ApiPOSTEvent:
+          Properties:
+            Method: POST
+            Path: /route
+            RestApiId:
+              Ref: SAMApi
+          Type: Api
+      Handler: post.handler
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

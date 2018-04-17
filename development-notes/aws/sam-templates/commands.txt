@@ -1,0 +1,12 @@
+
+# UPDATE the aws cli prior to doing anything
+pip install --upgrade awscli
+
+# aws-cli/1.15.4 Python/2.7.10 Darwin/16.7.0 botocore/1.10.4
+aws --version
+
+# upload swagger file to s3
+aws s3 cp swagger.yml s3://<your-bucket-name>/swagger.yml
+
+aws --region us-east-2 cloudformation package --template-file app_spec.yml --output-template-file app_deploy.yml --s3-bucket <your-bucket-name>
+aws --region us-east-2 cloudformation deploy --template-file app_deploy.yml --stack-name samlamstack --capabilities CAPABILITY_IAM

@@ -1,0 +1,53 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "2016-08-17T18:08:34Z",
+		"title": "SAMLam API"
+	},
+	"basePath": "/v1",
+	"schemes": ["https"],
+	"paths": {
+		"/route": {
+			"get": {
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "200 response"
+					}
+				},
+				"x-amazon-apigateway-integration": {
+					"uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SAMLamGET.Arn}/invocations"
+          },
+					"responses": {
+						"default": {
+							"statusCode": "200"
+						}
+					},
+					"httpMethod": "POST",
+					"type": "aws"
+				}
+			},
+			"post": {
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "200 response"
+					}
+				},
+				"x-amazon-apigateway-integration": {
+					"uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SAMLamPOST.Arn}/invocations"
+          },
+					"responses": {
+						"default": {
+							"statusCode": "200"
+						}
+					},
+					"httpMethod": "POST",
+					"type": "aws"
+				}
+			}
+		}
+	}
+}
