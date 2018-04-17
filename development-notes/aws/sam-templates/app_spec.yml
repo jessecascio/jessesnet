@@ -36,8 +36,4 @@ Resources:
         'Fn::Transform':
           Name: 'AWS::Include'
           Parameters:
-            Location: s3://super-secret-dont-read-me/swagger.json
-Outputs:
-    ApiURL:
-      Description: "API endpoint URL for Prod environment"
-      Value: !Sub "https://${SAMApi}.execute-api.${AWS::Region}.amazonaws.com/stage"
+            Location: s3://<your-bucket-name>/swagger.json
