@@ -8,12 +8,12 @@ Resources:
         Fn::Transform:
           Name: AWS::Include
           Parameters:
-            Location: s3://super-secret-dont-read-me/swagger.json
+            Location: s3://<your-bucket-name>/swagger.json
       StageName: stage
     Type: AWS::Serverless::Api
   SAMLamGET:
     Properties:
-      CodeUri: s3://sam-stamp/6aa95c449a69f714766624fa81b7015c
+      CodeUri: s3://<your-bucket-name>/6aa95c449a69f714766624fa81b7015c
       Events:
         ApiGETEvent:
           Properties:
@@ -27,7 +27,7 @@ Resources:
     Type: AWS::Serverless::Function
   SAMLamPOST:
     Properties:
-      CodeUri: s3://sam-stamp/764093f3b54e35ba821aefa851ae38c3
+      CodeUri: s3://<your-bucket-name>/764093f3b54e35ba821aefa851ae38c3
       Events:
         ApiPOSTEvent:
           Properties:
