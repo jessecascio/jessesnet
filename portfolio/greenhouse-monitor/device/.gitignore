@@ -1,0 +1,4 @@
+
+app_deploy.yml
+package-lock.json
+*.zip

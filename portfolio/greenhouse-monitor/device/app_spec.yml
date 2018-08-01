@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lamba Mocking Greenhouse Device
+
+Resources:
+  GreenHouseDeviceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      Policies: AmazonDynamoDBFullAccess 
+      CodeUri: package.zip
+      Events:
+        CronEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+
+  GreenHouseDeviceTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: greenhouse_devices
+      PrimaryKey:
+        Name: device_id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  
+  GreenHouseMeasurementTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: greenhouse_measurements
+      KeySchema:
+        - AttributeName: device_id
+          KeyType: HASH
+        - AttributeName: iso
+          KeyType: RANGE
+      AttributeDefinitions:
+        - AttributeName: device_id
+          AttributeType: S
+        - AttributeName: iso
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5

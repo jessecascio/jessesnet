@@ -1,0 +1,19 @@
+{
+  "name": "greenhouse-device",
+  "version": "1.0.0",
+  "description": "GreenHouse Device",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0",
+    "lint": "node_modules/.bin/eslint index.js",
+    "mock": "DB_ENDPOINT=http://localhost:8000 node mock.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": { },
+  "devDependencies": {
+    "aws-sdk": "^2.283.1",
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.2.0"
+  }
+}
