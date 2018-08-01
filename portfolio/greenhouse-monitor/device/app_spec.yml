@@ -24,8 +24,8 @@ Resources:
         Name: device_id
         Type: String
       ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
   
   GreenHouseMeasurementTable:
     Type: AWS::DynamoDB::Table
@@ -42,5 +42,5 @@ Resources:
         - AttributeName: iso
           AttributeType: S
       ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
